@@ -32,6 +32,9 @@ const options = computed(() => {
   padding: 20px 0;
   background-color: #ececec;
   margin-bottom: 40px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
   &__grid {
     display: flex;
     align-items: center;
