@@ -3,6 +3,11 @@
     <div class="container">
       <div class="page-header__grid">
         <PageNav />
+        <AppSelect
+          :options="selectOptions"
+          :modelValue="select"
+          @update:modelValue="(value) => (select = value)"
+        />
       </div>
     </div>
   </header>
@@ -10,6 +15,11 @@
 
 <script setup lang="ts">
 import PageNav from '@/components/PageNav.vue'
+import AppSelect from '@/components/AppSelect.vue'
+import { ref } from 'vue'
+
+const select = ref('')
+const selectOptions = ref(['1', '2', '3'])
 </script>
 
 <style lang="scss" scoped>
@@ -19,6 +29,7 @@ import PageNav from '@/components/PageNav.vue'
   margin-bottom: 40px;
   &__grid {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 32px;
   }
