@@ -4,9 +4,9 @@
       <div class="page-header__grid">
         <PageNav />
         <AppSelect
-          :options="selectOptions"
-          :modelValue="select"
-          @update:modelValue="(value) => (select = value)"
+          :options="options"
+          :modelValue="currencyStore.currencyActive"
+          @update:modelValue="(value) => currencyStore.setCurrencyActive(value)"
         />
       </div>
     </div>
@@ -16,10 +16,15 @@
 <script setup lang="ts">
 import PageNav from '@/components/PageNav.vue'
 import AppSelect from '@/components/AppSelect.vue'
-import { ref } from 'vue'
+import { useCurrencyStore } from '@/stores/currency'
+import { computed } from 'vue'
+import { availableСurrencies } from '@/const'
 
-const select = ref('')
-const selectOptions = ref(['1', '2', '3'])
+const currencyStore = useCurrencyStore()
+
+const options = computed(() => {
+  return availableСurrencies.filter((c) => c !== currencyStore.currencyActive)
+})
 </script>
 
 <style lang="scss" scoped>

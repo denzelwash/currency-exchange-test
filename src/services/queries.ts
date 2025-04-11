@@ -1,7 +1,7 @@
-import type { Currency } from '@/types/currency'
+import type { CurrencyResponse } from '@/types/currency'
 import api from './api'
 
-const getCurrency = async (): Promise<Currency | undefined> => {
+const getCurrency = async (): Promise<CurrencyResponse | undefined> => {
   try {
     const url = `currency`
     const response = await api.get(url)

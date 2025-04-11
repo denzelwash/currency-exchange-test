@@ -1,1 +1,1 @@
-export type Currency = Record<string, number>
+export type CurrencyResponse = Record<string, number>
