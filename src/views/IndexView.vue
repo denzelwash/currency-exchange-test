@@ -1,11 +1,11 @@
 <template>
-  <div v-if="currencyStore.currencyRate">
+  <section v-if="currencyStore.currencyRate">
     <ul class="list">
       <li v-for="currency in list" :key="currency">
         {{ `1 ${currency} = ${calc(currency)} ${currencyStore.currencyActive}` }}
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

@@ -1,31 +1,39 @@
 <template>
-  <form class="form">
-    <div class="form__field">
-      <AppInput
-        :model-value="currencyStore.firstConvertBlock.input"
-        type="number"
-        @update:model-value="(value) => (currencyStore.firstConvertBlock.input = value)"
+  <section v-if="currencyStore.currencyRate">
+    <form class="form">
+      <div class="form__field">
+        <AppInput
+          :model-value="currencyStore.firstConvertBlock.input"
+          type="number"
+          @update:model-value="(value) => (currencyStore.firstConvertBlock.input = value)"
+        />
+        <AppSelect
+          :options="currencyStore.firstConvertCurrencyList"
+          :modelValue="currencyStore.firstConvertBlock.select"
+          @update:modelValue="(value) => (currencyStore.firstConvertBlock.select = value)"
+        />
+      </div>
+      <img
+        src="/svg/exchange.svg"
+        class="separator"
+        width="24"
+        height="24"
+        @click="currencyStore.swapPlaces()"
       />
-      <AppSelect
-        :options="currencyStore.firstConvertCurrencyList"
-        :modelValue="currencyStore.firstConvertBlock.select"
-        @update:modelValue="(value) => (currencyStore.firstConvertBlock.select = value)"
-      />
-    </div>
-    <span class="separator">=</span>
-    <div class="form__field">
-      <AppInput
-        :model-value="currencyStore.secondConvertBlock.input"
-        type="number"
-        @update:model-value="(value) => (currencyStore.secondConvertBlock.input = value)"
-      />
-      <AppSelect
-        :options="currencyStore.secondConvertCurrencyList"
-        :modelValue="currencyStore.secondConvertBlock.select"
-        @update:modelValue="(value) => (currencyStore.secondConvertBlock.select = value)"
-      />
-    </div>
-  </form>
+      <div class="form__field">
+        <AppInput
+          :model-value="currencyStore.secondConvertBlock.input"
+          type="number"
+          @update:model-value="(value) => (currencyStore.secondConvertBlock.input = value)"
+        />
+        <AppSelect
+          :options="currencyStore.secondConvertCurrencyList"
+          :modelValue="currencyStore.secondConvertBlock.select"
+          @update:modelValue="(value) => (currencyStore.secondConvertBlock.select = value)"
+        />
+      </div>
+    </form>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -38,8 +46,8 @@ const currencyStore = useCurrencyStore()
 
 <style scoped lang="scss">
 .form {
-  display: flex;
-  justify-content: flex-start;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   gap: 16px;
   &__field {
@@ -58,6 +66,7 @@ const currencyStore = useCurrencyStore()
 }
 
 .separator {
-  font-size: 24px;
+  transform: rotate(90deg);
+  cursor: pointer;
 }
 </style>

@@ -54,6 +54,13 @@ export const useCurrencyStore = defineStore('currency', () => {
     isUpdating.value = false
   })
 
+  const swapPlaces = () => {
+    const firstSelect = firstConvertBlock.select
+    const secondSelect = secondConvertBlock.select
+    firstConvertBlock.select = secondSelect
+    secondConvertBlock.select = firstSelect
+  }
+
   return {
     currencyActive,
     currencyRate,
@@ -62,5 +69,6 @@ export const useCurrencyStore = defineStore('currency', () => {
     setCurrencyActive,
     firstConvertCurrencyList,
     secondConvertCurrencyList,
+    swapPlaces,
   }
 })
