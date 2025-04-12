@@ -1,20 +1,28 @@
 <template>
   <form class="form">
     <div class="form__field">
-      <AppInput :model-value="firstInput" />
+      <AppInput
+        :model-value="currencyStore.firstConvertBlock.input"
+        type="number"
+        @update:model-value="(value) => (currencyStore.firstConvertBlock.input = value)"
+      />
       <AppSelect
-        :options="firstOptions"
-        :modelValue="firstSelect"
-        @update:modelValue="(value) => (firstSelect = value)"
+        :options="currencyStore.firstConvertCurrencyList"
+        :modelValue="currencyStore.firstConvertBlock.select"
+        @update:modelValue="(value) => (currencyStore.firstConvertBlock.select = value)"
       />
     </div>
     <span class="separator">=</span>
     <div class="form__field">
-      <AppInput :model-value="secondInput" />
+      <AppInput
+        :model-value="currencyStore.secondConvertBlock.input"
+        type="number"
+        @update:model-value="(value) => (currencyStore.secondConvertBlock.input = value)"
+      />
       <AppSelect
-        :options="secondOptions"
-        :modelValue="secondSelect"
-        @update:modelValue="(value) => (secondSelect = value)"
+        :options="currencyStore.secondConvertCurrencyList"
+        :modelValue="currencyStore.secondConvertBlock.select"
+        @update:modelValue="(value) => (currencyStore.secondConvertBlock.select = value)"
       />
     </div>
   </form>
@@ -24,22 +32,8 @@
 import AppInput from '@/components/AppInput.vue'
 import AppSelect from '@/components/AppSelect.vue'
 import { useCurrencyStore } from '@/stores/currency'
-import { computed, ref } from 'vue'
-import { availableСurrencies } from '@/const'
 
 const currencyStore = useCurrencyStore()
-
-const firstInput = ref('')
-const firstSelect = ref(availableСurrencies[0])
-const firstOptions = computed(() => {
-  return availableСurrencies.filter((c) => c !== firstSelect.value && c !== secondSelect.value)
-})
-
-const secondInput = ref('')
-const secondSelect = ref(availableСurrencies[1])
-const secondOptions = computed(() => {
-  return availableСurrencies.filter((c) => c !== firstSelect.value && c !== secondSelect.value)
-})
 </script>
 
 <style scoped lang="scss">
