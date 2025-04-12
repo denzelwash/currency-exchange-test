@@ -3,7 +3,7 @@
     <form class="form">
       <div class="form__field">
         <AppInput
-          class="convert-input"
+          class="form__input"
           :model-value="currencyStore.firstConvertBlock.input"
           type="number"
           @update:model-value="(value) => (currencyStore.firstConvertBlock.input = value)"
@@ -16,14 +16,14 @@
       </div>
       <img
         src="/svg/exchange.svg"
-        class="separator"
+        class="form__separator"
         width="24"
         height="24"
         @click="currencyStore.swapPlaces()"
       />
       <div class="form__field">
         <AppInput
-          class="convert-input"
+          class="form__input"
           :model-value="currencyStore.secondConvertBlock.input"
           type="number"
           @update:model-value="(value) => (currencyStore.secondConvertBlock.input = value)"
@@ -67,15 +67,13 @@ const currencyStore = useCurrencyStore()
       width: 100%;
     }
   }
-}
-
-.convert-input {
-  width: 160px;
-  flex-grow: 1;
-}
-
-.separator {
-  transform: rotate(90deg);
-  cursor: pointer;
+  &__separator {
+    transform: rotate(90deg);
+    cursor: pointer;
+  }
+  &__input {
+    width: 160px;
+    flex-grow: 1;
+  }
 }
 </style>
