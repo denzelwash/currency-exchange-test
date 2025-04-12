@@ -3,6 +3,7 @@
     <form class="form">
       <div class="form__field">
         <AppInput
+          class="convert-input"
           :model-value="currencyStore.firstConvertBlock.input"
           type="number"
           @update:model-value="(value) => (currencyStore.firstConvertBlock.input = value)"
@@ -22,6 +23,7 @@
       />
       <div class="form__field">
         <AppInput
+          class="convert-input"
           :model-value="currencyStore.secondConvertBlock.input"
           type="number"
           @update:model-value="(value) => (currencyStore.secondConvertBlock.input = value)"
@@ -50,6 +52,9 @@ const currencyStore = useCurrencyStore()
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  @media (max-width: $xs) {
+    display: flex;
+  }
   &__field {
     display: flex;
     align-items: stretch;
@@ -58,11 +63,15 @@ const currencyStore = useCurrencyStore()
     box-shadow:
       0 1px 3px rgba(0, 0, 0, 0.12),
       0 1px 2px rgba(0, 0, 0, 0.24);
+    @media (max-width: $xs) {
+      width: 100%;
+    }
   }
 }
 
 .convert-input {
-  width: 140px;
+  width: 160px;
+  flex-grow: 1;
 }
 
 .separator {

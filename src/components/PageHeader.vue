@@ -40,6 +40,9 @@ const options = computed(() => {
     align-items: center;
     justify-content: space-between;
     gap: 32px;
+    @media (max-width: $xs) {
+      gap: 16px;
+    }
   }
 }
 </style>
