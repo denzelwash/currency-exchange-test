@@ -23,7 +23,8 @@ const emit = defineEmits(['update:modelValue'])
 <style lang="scss">
 .v-select {
   background-color: #fff;
-  min-width: 200px;
+  min-width: 110px;
+  text-transform: uppercase;
   .vs__open-indicator {
     display: flex;
     align-items: center;
@@ -31,6 +32,10 @@ const emit = defineEmits(['update:modelValue'])
   }
   .vs__selected-options {
     padding-left: 12px;
+  }
+  .vs__dropdown-menu {
+    min-width: 110px;
+    width: auto;
   }
 }
 </style>
